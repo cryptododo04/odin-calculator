@@ -7,6 +7,10 @@ body{
     height: 100vh;
 }
 
+.calculator{
+    border: 1px red solid;
+}
+
 .btn{
     height: 75px;
     width: 75px;
@@ -16,5 +20,49 @@ body{
 
 
 .number{
-    border: 5px solid red;
+    border: 1px solid slateblue;
+    border-radius: 10px;
+}
+
+.number:hover{
+    background-color: gray;
+    color: white;
+}
+
+.operator{
+    border: 1px solid cornflowerblue;
+}
+
+.operator:hover{
+    background-color:cornflowerblue;
+    color: white;
+}
+
+.clear{
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
+.clear:hover{
+    background-color: rgb(248, 60, 60);
+    color: white;
+}
+
+.decimal{
+    border: 1px solid lightgreen;
+    border-radius: 10px;
+}
+
+.decimal:hover{
+    background-color: lightgreen;
+    color: white;
+}
+
+.equal{
+    border: 1px solid lightgreen;
+}
+
+.equal:hover{
+    background-color: lightgreen;
+    color: white;   
 }
