@@ -1,10 +1,37 @@
 body{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.nav{
+    font-size: 35px;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    
+    
+}
+
+main{
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
+}
+
+footer{
+    padding: 10px;
+    text-align: center;
+    background-color: pink;
+    width: 100%;
+    
 }
 
 
@@ -67,7 +94,6 @@ body{
 
 .first-row{
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
@@ -75,6 +101,7 @@ body{
     height: 75px;
     width: 75px;
     margin: 15px;
+    padding: 0px;
     font-size: 40px;
     border: 3px solid #ccc;
     border-radius: 10px;
@@ -82,6 +109,10 @@ body{
     box-shadow: 0 3px 0 #ccc;
     transition: box-shadow 0.2s ease;
     cursor: pointer;
+  }
+
+  button{
+    display: flex;
   }
   
   .btn:hover {
@@ -137,3 +168,48 @@ body{
     color: #fff
  }
 
+
+ @media only screen and (max-width: 445px) {
+    /* Add styles here to make the calculator fit on an iPhone */
+    .btn {
+      /* Reduce the size of the buttons */
+      height: 40px;
+      width: 40px;
+      /* Reduce the font size of the button text */
+      font-size: 25px;
+      margin: 5px;
+    }
+
+    body{
+        gap: 0px;
+    }
+
+    .nav{
+        font-size: 35px;   
+    }
+
+    .screen{
+        width: 150px;
+        height: 50px;
+        margin-left: 5px;
+        margin-right: 7px;
+    }
+    
+    .previous{
+        font-size: 12px;
+    }
+    .current {
+        font-size: 20px;
+      }
+  
+    .calculator {
+      /* Make the calculator narrower to fit on the screen */
+      width: 65%;
+      /* Reduce the padding around the buttons */
+      padding: 5px;
+    }
+  }
+  
+  
+  
+  
