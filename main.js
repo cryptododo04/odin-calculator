@@ -77,6 +77,52 @@ document.addEventListener("DOMContentLoaded",function(){
     });
     });
 
+    // add a keydown event listener to the backspace on the keyboard
+    document.addEventListener("keydown", function(event) {
+        // Check if the key pressed is the backspace key
+        if (event.code === "Backspace") {
+          // Delete the last character in the currentValue string
+          currentValue = currentValue.slice(0, -1);
+          // Update the display
+          currentScreen.textContent = currentValue;
+        }
+      });
+
+
+    document.addEventListener("keydown", function(event) {
+        // Check if the key pressed is a number
+        if (event.key >= "0" && event.key <= "9") {
+          handleNumber(event.key);
+          currentScreen.textContent = currentValue;
+        }
+      
+        // Check if the key pressed is an operator
+        if (event.key === "+" || event.key === "-" || event.key === "*" || event.key === "/") {
+          handleOperator(event.key);
+          previousScreen.textContent = previousValue + " " + currentOperator;
+          currentScreen.textContent = currentValue;
+        }
+      
+        // Check if the key pressed is the equal sign
+        if (event.key === "=" || event.key === "Enter") {
+          if (currentValue !== "" && previousValue !== "") {
+            calculate();
+            previousScreen.textContent = "";
+            if (previousValue.length <= 7 || previousValue === "Cannot divide by 0") {
+              currentScreen.textContent = previousValue;
+            } else {
+              currentScreen.textContent = previousValue.slice(0, 7) + "...";
+            }
+          }
+        }
+      
+        // Check if the key pressed is the decimal point
+        if (event.key === ".") {
+          addDecimal();
+          currentScreen.textContent = currentValue;
+        }
+      });
+
     // Function to handle a clicked number button
     function handleNumber(num) {
     // If the previous value is the error message, reset it to 0 and clear the error message from the screen
