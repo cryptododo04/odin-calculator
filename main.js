@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded",function(){
     numbers.forEach((number) => number.addEventListener("click",function(e){
         // Call the handleNumber function and pass it the clicked button's text content
         handleNumber(e.target.textContent);
+        number.blur();
         
         // Update the current screen with the current value
         currentScreen.textContent = currentValue;
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded",function(){
     operators.forEach((op) => op.addEventListener("click",function(e){
         // Call the handleOperator function and pass it the clicked button's text content
         handleOperator(e.target.textContent);
-        
+        op.blur();
         // Update the previous screen with the previous value and the current operator
         previousScreen.textContent = previousValue + " " + currentOperator;
 
@@ -48,6 +49,8 @@ document.addEventListener("DOMContentLoaded",function(){
         previousValue = "";
         currentOperator = "";
 
+        clear.blur();
+
         // Clear the previous and current screens
         previousScreen.textContent = currentValue;
         currentScreen.textContent = currentValue;
@@ -58,14 +61,15 @@ document.addEventListener("DOMContentLoaded",function(){
         // If there is a current value and a previous value, perform the calculation
         if (currentValue !== "" && previousValue !== "") {
           calculate();
+          equal.blur();
           previousScreen.textContent = "";
 
           // If the previous value is short enough or is the error message, display it on the current screen
-          if (previousValue.length <= 7 || previousValue === "Cannot divide by 0") {
+          if (previousValue.length <= 9 || previousValue === "Cannot divide by 0") {
             currentScreen.textContent = previousValue;
           } else {
             // If the previous value is too long, display an ellipsis on the current screen
-            currentScreen.textContent = previousValue.slice(0, 7) + "...";
+            currentScreen.textContent = previousValue.slice(0, 9) + "...";
           }
         }
       });
@@ -73,11 +77,14 @@ document.addEventListener("DOMContentLoaded",function(){
     // Add a click event listener to the decimal button
     decimal.addEventListener("click", function() {
         addDecimal();
+        
+        decimal.blur();
+
         currentScreen.textContent = currentValue;
     });
     });
 
-    // add a keydown event listener to the backspace on the keyboard
+    // add a keydown event listener to the backspace on the keboard
     document.addEventListener("keydown", function(event) {
         // Check if the key pressed is the backspace key
         if (event.code === "Backspace") {
@@ -108,10 +115,10 @@ document.addEventListener("DOMContentLoaded",function(){
           if (currentValue !== "" && previousValue !== "") {
             calculate();
             previousScreen.textContent = "";
-            if (previousValue.length <= 7 || previousValue === "Cannot divide by 0") {
+            if (previousValue.length <= 9 || previousValue === "Cannot divide by 0") {
               currentScreen.textContent = previousValue;
             } else {
-              currentScreen.textContent = previousValue.slice(0, 7) + "...";
+              currentScreen.textContent = previousValue.slice(0, 9) + "...";
             }
           }
         }
@@ -131,7 +138,7 @@ document.addEventListener("DOMContentLoaded",function(){
         previousScreen.textContent = "";
     }
     // Only append the number to the current value if it is less than or equal to 7 characters long
-    if (currentValue.length <= 7) {
+    if (currentValue.length <= 9) {
         currentValue += num;
     }
     }
@@ -200,9 +207,13 @@ document.addEventListener("DOMContentLoaded",function(){
         // If the number is an integer, return it as is
         if (num % 1 === 0) {
           return num;
+          if(currentOperator){
+            currentValue = "";
+        }
+        currentValue += number;
         } else {
           // Otherwise, round it to 2 decimal places and return it
-          return parseFloat(num.toFixed(2));
+          return parseFloat(num.toFixed(4));
         }
       }
       
